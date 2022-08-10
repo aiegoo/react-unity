@@ -1,4 +1,2 @@
-/node_modules
-/distribution
-/*.tgz
+# System
 .DS_Store
