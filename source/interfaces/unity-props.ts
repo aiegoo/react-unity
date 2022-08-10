@@ -1,34 +1,37 @@
-import UnityContext from "../models/unity-context";
+import { CSSProperties } from "react";
+import { UnityContext } from "../library/unity-context";
 
-export default interface IUnityProps {
+export interface IUnityProps {
   /**
-   * The context that should be rendered within the Unity component.
+   * The Context which should be rendered be the Unity Component.
+   * @public
+   * @readonly
    * @type {UnityContext}
    */
-  unityContext: UnityContext;
+  readonly unityContext: UnityContext;
 
   /**
-   * The class name for the canvas wrapper.
+   * The Class Name will be applied to the Canvas.
+   * @public
+   * @readonly
    * @type {string}
    */
   className?: string;
 
   /**
-   * The width of the element.
-   * @type {string | number}
+   * The styles will be applied to the Canvas.
+   * @public
+   * @readonly
+   * @type {CSSProperties}
    */
-  width?: string | number;
-
-  /**
-   * The height of the element.
-   * @type {string | number}
-   */
-  height?: string | number;
+  style?: CSSProperties;
 
   /**
    * The tabIndex of the element. Mitigates the issue that once WebGL is loaded,
    * the keyboard is captured and HTML inputs are not reacting to keyboard
    * strokes anymore.
+   * @public
+   * @readonly
    * @type {number}
    * @see https://stackoverflow.com/a/60854680
    */
@@ -38,8 +41,22 @@ export default interface IUnityProps {
    * The Canvas can appear too blurry on retina screens. The devicePixelRatio
    * determines how much extra pixel density should be added to allow for a
    * sharper image.
+   * @public
+   * @readonly
    * @type {number}
    * @see https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio
    */
-  devicePixelRatio?: number;
+  readonly devicePixelRatio?: number;
+
+  /**
+   * When disabling the match WebGL to canvas size flag, the canvas allows for
+   * client side customization of the WebGL canvas target size instead of
+   * requiring it to always match 1:1 with the High DPI CSS size of the canvas.
+   * Supported since Unity 2021.1.0b8
+   * @public
+   * @readonly
+   * @type {boolean}
+   * @see https://issuetracker.unity3d.com/issues/webgl-builds-dont-allow-separate-control-on-canvas-render-buffer-size
+   */
+  readonly matchWebGLToCanvasSize?: boolean;
 }
