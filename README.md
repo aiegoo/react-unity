@@ -8,15 +8,17 @@
 [![npm](https://img.shields.io/npm/v/react-unity-webgl.svg?style=for-the-badge)]()
 [![npm](https://img.shields.io/badge/build-passing-brightgreen.svg?style=for-the-badge)]()
 <br/>
-[![npm](https://img.shields.io/github/stars/elraccoone/react-unity-webgl.svg?style=for-the-badge)]()
+[![npm](https://img.shields.io/github/stars/elraccoone/react-unity-webgl.svg?style=for-the-badge&color=fe8523)]()
 [![npm](https://img.shields.io/npm/dt/react-unity-webgl.svg?style=for-the-badge)]()
+[![npm](https://img.shields.io/bundlephobia/minzip/react-unity-webgl?style=for-the-badge&label=size)]()
 
 When building content for the web, you might need to communicate with elements on a webpage. Or you might want to implement functionality using Web APIs which Unity does not currently expose by default. In both cases, you need to directly interface with the browser’s JavaScript engine. React Unity WebGL provides an easy solution for embedding Unity WebGL builds in your React application, with two-way communication between your React and Unity application with advanced API's.
 
 **&Lt;**
 [**Documentation**](#documentation) &middot;
 [**Test Environment**](https://github.com/jeffreylanters/react-unity-webgl-test) &middot;
-[**Buy me a Coffee**](https://paypal.me/jeffreylanters)
+[**Buy me a Coffee**](https://paypal.me/jeffreylanters) &middot;
+[**Join Discord**](https://discord.gg/UTKeNAD78x)
 **&Gt;**
 
 <br/><br/>
@@ -45,6 +47,25 @@ $ npm install react-unity-webgl@5.x  # For Unity 5.6 (LTS)
 ```
 
 # Documentation
+
+Welcome to the React Unity WebGL Documentation! My name is Jeffrey and I'm here to help you build your awesome games to the web. In the table below you'll find everything there is you'll need to know when using the module. If you'll need help, feel free to open a new [discussion](https://github.com/elraccoone/react-unity-webgl/discussions), when you want to contribute or think you've found a problem, feel free to open a new [issue](https://github.com/elraccoone/react-unity-webgl/issues). Like what you see? Please consider [Starring this repository](https://github.com/elraccoone/react-unity-webgl/stargazers)! Happy coding.
+
+- [Getting Started](#getting-started)
+- [Communication from React to Unity](#communication-from-react-to-unity)
+- [Communication from Unity to React](#communication-from-unity-to-react)
+- [Tracking the loading progression](#tracking-the-loading-progression)
+- [Handeling on when the Application is loaded](#handeling-on-when-the-application-is-loaded)
+- [Entering or Leaving Fullscreen](#entering-or-leaving-fullscreen)
+- [Adding Styles to the Canvas Component](#adding-styles-to-the-canvas-component)
+- [Setting the Canvas's ClassName](#setting-the-canvass-classname)
+- [Device Pixel Ratio and Retina Support](#device-pixel-ratio-and-retina-support)
+- [Tab Index and Keyboard Capturing](#tab-index-and-keyboard-capturing)
+- [Catching Runtime errors](#catching-runtime-errors)
+- [Unmounting, Unloading and Quitting](#unmounting-unloading-and-quitting)
+- [Defining the Streaming Assets URL](#defining-the-streaming-assets-url)
+- [Overwriting the Unity Modules](#overwriting-the-unity-modules)
+- [Providing Application Meta Data](#providing-application-meta-data)
+- [JavaScript to UnityScript types](#javascript-to-unityscript-types)
 
 ## Getting Started
 
@@ -376,16 +397,16 @@ const App = () => {
 };
 ```
 
-## Setting the Canvas's Height and Width
+## Adding Styles to the Canvas Component
 
-> Available since version 5.6.0
+> Available since version 8.2.0
 
-The default size is 800px width to 600px height. You can easily overrule them by passing the following props. The height and width properties are used to set the height and width of the wrapper element.
+The style tag allows for adding inline CSS for styling the component. The style's properties will be assigned directly onto the actual canvas.
 
-The height and width can be set to auto (Means that the browser calculates the height and width), or be specified in length values, like px, cm, etc., or in percent of the containing block. Note that the height and width properties do not include padding, borders, or margins; they set the height/width of the area inside the padding, border, and margin of the element!
+The style attribute accepts a JavaScript object with camelCased properties rather than a CSS string. This is consistent with the DOM style JavaScript property, is more efficient, and prevents XSS security holes. React will automatically append a “px” suffix to certain numeric inline style properties. If you want to use units other than “px”, specify the value as a string with the desired unit.
 
 ```tsx
-<Unity height={number | string} width={number | string} />
+<Unity style={CSSProperties} />
 ```
 
 #### Example implementation
@@ -406,7 +427,17 @@ const unityContext = new UnityContext({
 });
 
 const App = () => {
-  return <Unity unityContext={unityContext} width="100%" height="950px" />;
+  return (
+    <Unity
+      unityContext={unityContext}
+      style={{
+        height: "100%",
+        width: 950,
+        border: "2px solid black",
+        background: "grey",
+      }}
+    />
+  );
 };
 ```
 
@@ -742,7 +773,7 @@ When contributing to this repository, please first discuss the change you wish t
 - Typecheck all of your changes and make sure JSDocs are provided.
 - If you haven't already, complete the CLA.
 
-## Development and test cycle
+#### Development and test cycle
 
 If you want to modify this package and iteratively test it in inside your application, use the following steps while you're inside the directory of your own application:
 

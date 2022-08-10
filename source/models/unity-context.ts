@@ -2,6 +2,7 @@ import "../declarations/global";
 import IUnityConfig from "../interfaces/unity-config";
 import IUnityEvent from "../interfaces/unity-event";
 import UnityComponent from "../components/unity";
+import IUnityContextEventMap from "../interfaces/unity-context-event-map";
 
 /**
  * The Unity Context.
@@ -87,10 +88,17 @@ export default class UnityContext {
    * @param {Function} eventListener the event function
    * @returns {any} The Function
    */
-  public on(eventName: string, eventListener: Function): void {
+  public on<MapKey extends keyof IUnityContextEventMap | (string & {})>(
+    eventName: keyof IUnityContextEventMap | (MapKey & {}),
+    eventListener: (
+      ...parameters: MapKey extends keyof IUnityContextEventMap
+        ? IUnityContextEventMap[MapKey]
+        : any
+    ) => void
+  ): void {
     this.unityEvents.push({ eventName, eventCallback: eventListener });
-    (window as any).ReactUnityWebGL[eventName] = (parameter: any) =>
-      eventListener(parameter);
+    (window as any).ReactUnityWebGL[eventName] = (...parameters: any) =>
+      eventListener(...parameters);
   }
 
   /**
