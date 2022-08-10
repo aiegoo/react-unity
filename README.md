@@ -8,8 +8,9 @@
 [![npm](https://img.shields.io/npm/v/react-unity-webgl.svg?style=for-the-badge)]()
 [![npm](https://img.shields.io/badge/build-passing-brightgreen.svg?style=for-the-badge)]()
 <br/>
-[![npm](https://img.shields.io/github/stars/elraccoone/react-unity-webgl.svg?style=for-the-badge)]()
+[![npm](https://img.shields.io/github/stars/elraccoone/react-unity-webgl.svg?style=for-the-badge&color=fe8523)]()
 [![npm](https://img.shields.io/npm/dt/react-unity-webgl.svg?style=for-the-badge)]()
+[![npm](https://img.shields.io/bundlephobia/minzip/react-unity-webgl?style=for-the-badge&label=size)]()
 
 When building content for the web, you might need to communicate with elements on a webpage. Or you might want to implement functionality using Web APIs which Unity does not currently expose by default. In both cases, you need to directly interface with the browser’s JavaScript engine. React Unity WebGL provides an easy solution for embedding Unity WebGL builds in your React application, with two-way communication between your React and Unity application with advanced API's.
 
@@ -45,6 +46,25 @@ $ npm install react-unity-webgl@5.x  # For Unity 5.6 (LTS)
 ```
 
 # Documentation
+
+Welcome to the React Unity WebGL Documentation! My name is Jeffrey and I'm here to help you build your awesome games to the web. In the table below you'll find everything there is you'll need to know when using the module. If you'll need help, feel free to open a new [discussion](https://github.com/elraccoone/react-unity-webgl/discussions), when you want to contribute or think you've found a problem, feel free to open a new [issue](https://github.com/elraccoone/react-unity-webgl/issues). Like what you see? Please consider [Starring this repository](https://github.com/elraccoone/react-unity-webgl/stargazers)! Happy coding.
+
+- [Getting Started](#getting-started)
+- [Communication from React to Unity](#communication-from-react-to-unity)
+- [Communication from Unity to React](#communication-from-unity-to-react)
+- [Tracking the loading progression](#tracking-the-loading-progression)
+- [Handeling on when the Application is loaded](#handeling-on-when-the-application-is-loaded)
+- [Entering or Leaving Fullscreen](#entering-or-leaving-fullscreen)
+- [Setting the Canvas's Height and Width](#setting-the-canvass-height-and-width)
+- [Setting the Canvas's ClassName](#setting-the-canvass-classname)
+- [Device Pixel Ratio and Retina Support](#device-pixel-ratio-and-retina-support)
+- [Tab Index and Keyboard Capturing](#tab-index-and-keyboard-capturing)
+- [Catching Runtime errors](#catching-runtime-errors)
+- [Unmounting, Unloading and Quitting](#unmounting-unloading-and-quitting)
+- [Defining the Streaming Assets URL](#defining-the-streaming-assets-url)
+- [Overwriting the Unity Modules](#overwriting-the-unity-modules)
+- [Providing Application Meta Data](#providing-application-meta-data)
+- [JavaScript to UnityScript types](#javascript-to-unityscript-types)
 
 ## Getting Started
 
@@ -742,7 +762,7 @@ When contributing to this repository, please first discuss the change you wish t
 - Typecheck all of your changes and make sure JSDocs are provided.
 - If you haven't already, complete the CLA.
 
-## Development and test cycle
+#### Development and test cycle
 
 If you want to modify this package and iteratively test it in inside your application, use the following steps while you're inside the directory of your own application:
 
